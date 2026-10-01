@@ -31,13 +31,21 @@ st.markdown("""<style>
 :root{--ink:#17212B;--mute:#5F6B78;--line:#E1E5EA;--bg:#F5F6F8;--acc:#0B6E6E}
 html,body,[class*="css"],.stApp{font-family:'IBM Plex Sans',sans-serif;color:var(--ink)}
 .stApp{background:var(--bg)} #MainMenu,footer,header{visibility:hidden}
-section[data-testid="stSidebar"]{background:#fff;border-right:1px solid var(--line);min-width:240px}
+section[data-testid="stSidebar"]{background:#fff!important;border-right:1px solid var(--line);min-width:240px}
+section[data-testid="stSidebar"] *{color:var(--ink)!important}
+section[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{color:var(--mute)!important}
+section[data-testid="stSidebar"] [data-testid="stRadio"] label{color:var(--ink)!important;opacity:1!important}
+section[data-testid="stSidebar"] [data-testid="stRadio"] label p{color:var(--ink)!important;opacity:1!important}
+section[data-testid="stSidebar"] .stButton>button{color:var(--ink)!important;background:#fff!important}
 h1{font-size:1.5rem!important;font-weight:600!important;letter-spacing:-.01em} h2,h3{font-weight:600!important}
 .stButton>button,.stDownloadButton>button{border-radius:6px;border:1px solid var(--line);font-weight:500;background:#fff;color:var(--ink)}
-.stButton>button[kind="primary"]{background:var(--acc);border-color:var(--acc);color:#fff}
-.stButton>button:hover{border-color:var(--acc);color:var(--acc)} .stButton>button[kind="primary"]:hover{color:#fff;filter:brightness(1.1)}
+.stButton>button[kind="primary"]{background:var(--acc);border-color:var(--acc);color:#fff!important}
+.stButton>button:hover{border-color:var(--acc);color:var(--acc)} .stButton>button[kind="primary"]:hover{color:#fff!important;filter:brightness(1.1)}
 div[data-testid="stMetric"]{background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px 14px}
-div[data-testid="stMetricLabel"]{color:var(--mute)}
+div[data-testid="stMetric"] label,div[data-testid="stMetricLabel"]{color:var(--mute)!important;opacity:1!important}
+div[data-testid="stMetricValue"]{color:var(--ink)!important;opacity:1!important}
+div[data-testid="stMetricDelta"]{opacity:1!important}
+.stMarkdown p,.stCaption,.stTextInput label,.stSelectbox label,.stFileUploader label{color:var(--ink)!important;opacity:1!important}
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px}
 .row{background:#fff;border:1px solid var(--line);border-radius:6px;padding:10px 14px;margin-bottom:6px}
 .row b{font-weight:600}.meta{color:var(--mute);font-size:.86rem}
