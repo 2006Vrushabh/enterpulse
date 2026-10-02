@@ -28,41 +28,252 @@ TODAY = date.today()
 
 st.markdown("""<style>
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap');
-:root{--ink:#17212B;--mute:#5F6B78;--line:#E1E5EA;--bg:#F5F6F8;--acc:#0B6E6E}
-html,body,[class*="css"],.stApp{font-family:'IBM Plex Sans',sans-serif;color:var(--ink)}
-/* Keep Streamlit's header visible so the sidebar expand/collapse control remains available. */
-.stApp{background:var(--bg)} #MainMenu,footer{visibility:hidden}
+
+:root{
+  --ink:#17212B;
+  --ink-2:#24313D;
+  --mute:#5F6B78;
+  --line:#DCE2E8;
+  --line-2:#E8ECF0;
+  --bg:#F5F6F8;
+  --surface:#FFFFFF;
+  --hover:#F1F5F5;
+  --active:#E8F3F2;
+  --acc:#0B6E6E;
+}
+
+html,body,[class*="css"],.stApp{
+  font-family:'IBM Plex Sans',sans-serif!important;
+  color:var(--ink)!important;
+}
+
+.stApp{
+  background:var(--bg)!important;
+}
+
+/* Keep Streamlit's header available: it contains the native sidebar toggle. */
+#MainMenu,footer{visibility:hidden!important;}
 header[data-testid="stHeader"]{
-    visibility:visible!important;
-    display:block!important;
-    background:transparent!important;
+  visibility:visible!important;
+  display:block!important;
+  background:transparent!important;
+  height:2.5rem!important;
 }
-[data-testid="stSidebarCollapsedControl"]{
-    visibility:visible!important;
-    display:block!important;
+header[data-testid="stHeader"] button{
+  visibility:visible!important;
+  opacity:1!important;
+  color:var(--ink)!important;
 }
+header[data-testid="stHeader"] button svg{
+  color:var(--ink)!important;
+  fill:var(--ink)!important;
+  stroke:var(--ink)!important;
+}
+[data-testid="stSidebarCollapsedControl"],
 [data-testid="stSidebarCollapseButton"]{
-    visibility:visible!important;
-    display:block!important;
+  visibility:visible!important;
+  display:block!important;
+  opacity:1!important;
 }
 [data-testid="stSidebarCollapsedControl"] button,
 [data-testid="stSidebarCollapseButton"] button{
-    visibility:visible!important;
-    opacity:1!important;
-    color:var(--ink)!important;
+  visibility:visible!important;
+  opacity:1!important;
+  color:var(--ink)!important;
+  background:var(--surface)!important;
+  border:1px solid var(--line)!important;
+  border-radius:6px!important;
+  box-shadow:0 1px 4px rgba(23,33,43,.10)!important;
+}
+[data-testid="stSidebarCollapsedControl"] button:hover,
+[data-testid="stSidebarCollapseButton"] button:hover{
+  background:var(--hover)!important;
+}
+[data-testid="stSidebarCollapsedControl"] button svg,
+[data-testid="stSidebarCollapseButton"] button svg{
+  color:var(--ink)!important;
+  fill:var(--ink)!important;
+  stroke:var(--ink)!important;
 }
 
-section[data-testid="stSidebar"]{background:#fff;border-right:1px solid var(--line);min-width:240px}
-h1{font-size:1.5rem!important;font-weight:600!important;letter-spacing:-.01em} h2,h3{font-weight:600!important}
-.stButton>button,.stDownloadButton>button{border-radius:6px;border:1px solid var(--line);font-weight:500;background:#fff;color:var(--ink)}
-.stButton>button[kind="primary"]{background:var(--acc);border-color:var(--acc);color:#fff}
-.stButton>button:hover{border-color:var(--acc);color:var(--acc)} .stButton>button[kind="primary"]:hover{color:#fff;filter:brightness(1.1)}
-div[data-testid="stMetric"]{background:#fff;border:1px solid var(--line);border-radius:6px;padding:12px 14px}
-div[data-testid="stMetricLabel"]{color:var(--mute)}
-.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:8px}
-.row{background:#fff;border:1px solid var(--line);border-radius:6px;padding:10px 14px;margin-bottom:6px}
-.row b{font-weight:600}.meta{color:var(--mute);font-size:.86rem}
-.lbl{color:var(--mute);font-size:.86rem;font-weight:500;margin:18px 0 6px}
+/* Sidebar */
+section[data-testid="stSidebar"]{
+  background:var(--surface)!important;
+  border-right:1px solid var(--line)!important;
+  min-width:250px!important;
+  width:250px!important;
+}
+section[data-testid="stSidebar"] *{
+  color:var(--ink)!important;
+}
+section[data-testid="stSidebar"] [data-testid="stCaptionContainer"] p{
+  color:var(--mute)!important;
+  opacity:1!important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"]{
+  width:100%!important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] > label{
+  color:var(--mute)!important;
+  font-size:.88rem!important;
+  font-weight:500!important;
+  margin-bottom:5px!important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] [role="radiogroup"]{
+  gap:3px!important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] [role="radio"]{
+  border-radius:6px!important;
+  padding:8px 10px!important;
+  margin:0!important;
+  min-height:36px!important;
+  color:var(--ink)!important;
+  transition:background .14s ease!important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] [role="radio"]:hover{
+  background:var(--hover)!important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] [role="radio"][aria-checked="true"]{
+  background:var(--active)!important;
+  color:var(--acc)!important;
+  font-weight:600!important;
+}
+section[data-testid="stSidebar"] [data-testid="stRadio"] [role="radio"] p,
+section[data-testid="stSidebar"] [data-testid="stRadio"] [role="radio"] span{
+  color:inherit!important;
+  opacity:1!important;
+}
+section[data-testid="stSidebar"] .stButton>button{
+  width:100%!important;
+  color:var(--ink)!important;
+  background:var(--surface)!important;
+  border:1px solid var(--line)!important;
+}
+
+/* Main typography */
+h1{
+  font-size:1.55rem!important;
+  line-height:1.25!important;
+  font-weight:600!important;
+  letter-spacing:-.015em!important;
+  color:var(--ink)!important;
+}
+h2,h3,h4{
+  font-weight:600!important;
+  color:var(--ink)!important;
+}
+.stMarkdown p,
+.stCaption,
+.stTextInput label,
+.stSelectbox label,
+.stFileUploader label,
+.stTextArea label{
+  color:var(--ink)!important;
+  opacity:1!important;
+}
+.stCaption{
+  color:var(--mute)!important;
+}
+
+/* Metrics: force readable labels and values across Streamlit versions. */
+div[data-testid="stMetric"]{
+  background:var(--surface)!important;
+  border:1px solid var(--line)!important;
+  border-radius:7px!important;
+  padding:13px 15px!important;
+}
+div[data-testid="stMetricLabel"],
+div[data-testid="stMetricLabel"] *,
+div[data-testid="stMetricValue"],
+div[data-testid="stMetricValue"] *,
+div[data-testid="stMetricDelta"],
+div[data-testid="stMetricDelta"] *{
+  opacity:1!important;
+}
+div[data-testid="stMetricLabel"],
+div[data-testid="stMetricLabel"] *{
+  color:var(--mute)!important;
+  font-size:.82rem!important;
+}
+div[data-testid="stMetricValue"],
+div[data-testid="stMetricValue"] *{
+  color:var(--ink)!important;
+}
+div[data-testid="stMetricValue"]{
+  font-size:1.75rem!important;
+  line-height:1.1!important;
+}
+
+/* Buttons */
+.stButton>button,
+.stDownloadButton>button,
+.stLinkButton>button{
+  border-radius:6px!important;
+  border:1px solid var(--line)!important;
+  font-weight:500!important;
+  background:var(--surface)!important;
+  color:var(--ink)!important;
+  min-height:36px!important;
+}
+.stButton>button:hover,
+.stDownloadButton>button:hover,
+.stLinkButton>button:hover{
+  border-color:var(--acc)!important;
+  color:var(--acc)!important;
+}
+.stButton>button[kind="primary"]{
+  background:var(--acc)!important;
+  border-color:var(--acc)!important;
+  color:#fff!important;
+}
+.stButton>button[kind="primary"]:hover{
+  color:#fff!important;
+  filter:brightness(1.06)!important;
+}
+
+/* Inputs */
+.stTextInput input,
+.stTextArea textarea,
+.stSelectbox [data-baseweb="select"]>div{
+  background:#fff!important;
+  color:var(--ink)!important;
+  border-color:var(--line)!important;
+}
+.stTextInput input::placeholder,
+.stTextArea textarea::placeholder{
+  color:#7A8794!important;
+  opacity:1!important;
+}
+
+/* Content rows */
+.row{
+  background:var(--surface)!important;
+  border:1px solid var(--line)!important;
+  border-radius:7px!important;
+  padding:11px 14px!important;
+  margin-bottom:7px!important;
+}
+.row b{
+  color:var(--ink)!important;
+  font-weight:600!important;
+}
+.meta{
+  color:var(--mute)!important;
+  font-size:.86rem!important;
+}
+.lbl{
+  color:#425466!important;
+  font-size:.86rem!important;
+  font-weight:600!important;
+  margin:18px 0 7px!important;
+}
+.dot{
+  display:inline-block;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  margin-right:8px;
+}
 </style>""", unsafe_allow_html=True)
 
 TABLES = ["departments","employees","projects","project_members","tasks","documents",
